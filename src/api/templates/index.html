@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Field Training 1 Project By Mostafa and Ramzy</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-heartbeat"></i>
+                    <h1>Field Training 1 Project (Mostafa and Ramzy)</h1>
+                </div>
+                <nav class="nav">
+                    <a href="/mlflow" class="nav-link"><i class="fas fa-chart-line"></i> MLflow Dashboard</a>
+                </nav>
+                <p class="subtitle">Advanced Breast Cancer Detection System</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            <div class="card prediction-card">
+                <div class="card-header">
+                    <h2><i class="fas fa-stethoscope"></i> Cancer Risk Assessment</h2>
+                    <p>Enter the medical measurements below for instant analysis</p>
+                </div>
+
+                <form id="predictionForm" class="prediction-form">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="mean_radius">Mean Radius</label>
+                            <input type="number" step="0.01" id="mean_radius" name="mean_radius" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mean_texture">Mean Texture</label>
+                            <input type="number" step="0.01" id="mean_texture" name="mean_texture" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mean_perimeter">Mean Perimeter</label>
+                            <input type="number" step="0.01" id="mean_perimeter" name="mean_perimeter" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mean_area">Mean Area</label>
+                            <input type="number" step="0.01" id="mean_area" name="mean_area" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mean_smoothness">Mean Smoothness</label>
+                            <input type="number" step="0.01" id="mean_smoothness" name="mean_smoothness" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mean_compactness">Mean Compactness</label>
+                            <input type="number" step="0.01" id="mean_compactness" name="mean_compactness" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mean_concavity">Mean Concavity</label>
+                            <input type="number" step="0.01" id="mean_concavity" name="mean_concavity" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mean_concave_points">Mean Concave Points</label>
+                            <input type="number" step="0.01" id="mean_concave_points" name="mean_concave_points" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mean_symmetry">Mean Symmetry</label>
+                            <input type="number" step="0.01" id="mean_symmetry" name="mean_symmetry" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="mean_fractal_dimension">Mean Fractal Dimension</label>
+                            <input type="number" step="0.01" id="mean_fractal_dimension" name="mean_fractal_dimension" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="radius_error">Radius Error</label>
+                            <input type="number" step="0.01" id="radius_error" name="radius_error" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="texture_error">Texture Error</label>
+                            <input type="number" step="0.01" id="texture_error" name="texture_error" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="perimeter_error">Perimeter Error</label>
+                            <input type="number" step="0.01" id="perimeter_error" name="perimeter_error" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="area_error">Area Error</label>
+                            <input type="number" step="0.01" id="area_error" name="area_error" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="smoothness_error">Smoothness Error</label>
+                            <input type="number" step="0.01" id="smoothness_error" name="smoothness_error" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="compactness_error">Compactness Error</label>
+                            <input type="number" step="0.01" id="compactness_error" name="compactness_error" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="concavity_error">Concavity Error</label>
+                            <input type="number" step="0.01" id="concavity_error" name="concavity_error" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="concave_points_error">Concave Points Error</label>
+                            <input type="number" step="0.01" id="concave_points_error" name="concave_points_error" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="symmetry_error">Symmetry Error</label>
+                            <input type="number" step="0.01" id="symmetry_error" name="symmetry_error" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="fractal_dimension_error">Fractal Dimension Error</label>
+                            <input type="number" step="0.01" id="fractal_dimension_error" name="fractal_dimension_error" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="worst_radius">Worst Radius</label>
+                            <input type="number" step="0.01" id="worst_radius" name="worst_radius" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="worst_texture">Worst Texture</label>
+                            <input type="number" step="0.01" id="worst_texture" name="worst_texture" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="worst_perimeter">Worst Perimeter</label>
+                            <input type="number" step="0.01" id="worst_perimeter" name="worst_perimeter" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="worst_area">Worst Area</label>
+                            <input type="number" step="0.01" id="worst_area" name="worst_area" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="worst_smoothness">Worst Smoothness</label>
+                            <input type="number" step="0.01" id="worst_smoothness" name="worst_smoothness" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="worst_compactness">Worst Compactness</label>
+                            <input type="number" step="0.01" id="worst_compactness" name="worst_compactness" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="worst_concavity">Worst Concavity</label>
+                            <input type="number" step="0.01" id="worst_concavity" name="worst_concavity" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="worst_concave_points">Worst Concave Points</label>
+                            <input type="number" step="0.01" id="worst_concave_points" name="worst_concave_points" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="worst_symmetry">Worst Symmetry</label>
+                            <input type="number" step="0.01" id="worst_symmetry" name="worst_symmetry" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="worst_fractal_dimension">Worst Fractal Dimension</label>
+                            <input type="number" step="0.01" id="worst_fractal_dimension" name="worst_fractal_dimension" required>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">
+                            <i class="fas fa-brain"></i>
+                            Analyze Risk
+                        </button>
+                        <button type="button" id="sampleDataBtn" class="btn btn-secondary">
+                            <i class="fas fa-magic"></i>
+                            Load Sample Data
+                        </button>
+                    </div>
+                </form>
+            </div>
+
+            <div id="results" class="results-card card" style="display: none;">
+                <div class="card-header">
+                    <h2><i class="fas fa-chart-line"></i> Analysis Results</h2>
+                </div>
+                <div class="result-content">
+                    <div class="result-metric">
+                        <div class="metric-label">Risk Assessment</div>
+                        <div id="predictionResult" class="metric-value"></div>
+                    </div>
+                    <div class="result-metric">
+                        <div class="metric-label">Confidence Level</div>
+                        <div id="probabilityResult" class="metric-value"></div>
+                    </div>
+                    <div class="progress-bar">
+                        <div id="riskBar" class="progress-fill"></div>
+                    </div>
+                    <div class="recommendation" id="recommendation"></div>
+                </div>
+            </div>
+        </main>
+
+        <footer class="footer">
+            <div class="footer-content">
+                <p>&copy; Health Assistant. Powered by ML and MLFLow.</p>
+                <div class="footer-links">
+                    <a href="#" class="footer-link">Privacy Policy</a>
+                    <a href="#" class="footer-link">Terms of Service</a>
+                    <a href="#" class="footer-link">Contact</a>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>

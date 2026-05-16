@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MLflow Dashboard</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="header-content">
+                <div class="logo">
+                    <i class="fas fa-chart-line"></i>
+                    <h1>MLflow Dashboard</h1>
+                </div>
+                <p class="subtitle">Breast Cancer Classification Experiments</p>
+            </div>
+        </header>
+
+        <main class="main-content">
+            {% for run in runs %}
+            <div class="card">
+                <div class="card-header">
+                    <h2>Run ID: {{ run.run_id }}</h2>
+                    <p>Status: {{ run.status }}</p>
+                </div>
+                <div class="metrics-grid">
+                    <div class="metric">
+                        <h3>Accuracy</h3>
+                        <p>{{ "%.4f"|format(run.metrics.get('accuracy', 0)) }}</p>
+                    </div>
+                    <div class="metric">
+                        <h3>F1 Score</h3>
+                        <p>{{ "%.4f"|format(run.metrics.get('f1_score', 0)) }}</p>
+                    </div>
+                    <div class="metric">
+                        <h3>ROC AUC</h3>
+                        <p>{{ "%.4f"|format(run.metrics.get('roc_auc', 0)) }}</p>
+                    </div>
+                    <div class="metric">
+                        <h3>Training Time</h3>
+                        <p>{{ "%.2f"|format(run.metrics.get('training_time', 0)) }}s</p>
+                    </div>
+                </div>
+                <div class="artifacts">
+                    <h3>Artifacts</h3>
+                    {% for artifact in run.artifacts %}
+                        {% if 'roc_curve.png' in artifact %}
+                            <img src="{{ url_for('artifact', run_id=run.run_id, filename='roc_curve.png') }}" alt="ROC Curve">
+                        {% elif 'pr_curve.png' in artifact %}
+                            <img src="{{ url_for('artifact', run_id=run.run_id, filename='pr_curve.png') }}" alt="PR Curve">
+                        {% elif 'confusion_matrix.png' in artifact %}
+                            <img src="{{ url_for('artifact', run_id=run.run_id, filename='confusion_matrix.png') }}" alt="Confusion Matrix">
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </main>
+    </div>
+</body>
+</html>

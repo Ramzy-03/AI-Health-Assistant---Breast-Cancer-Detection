@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>API Documentation - AI Health Assistant</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            background: linear-gradient(135deg, #f8fafc 0%, #e0e7ff 100%);
+            color: #1e293b;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .header {
+            text-align: center;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            background: linear-gradient(135deg, #4f46e5, #06b6d4);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 10px;
+        }
+
+        .card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e2e8f0;
+            margin-bottom: 30px;
+            overflow: hidden;
+        }
+
+        .card-header {
+            background: linear-gradient(135deg, #4f46e5, #3730a3);
+            color: white;
+            padding: 20px;
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        .card-content {
+            padding: 25px;
+        }
+
+        .endpoint {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            padding: 20px;
+            margin-bottom: 20px;
+        }
+
+        .endpoint-method {
+            display: inline-block;
+            padding: 4px 12px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-right: 10px;
+        }
+
+        .method-post {
+            background: #10b981;
+            color: white;
+        }
+
+        .method-get {
+            background: #3b82f6;
+            color: white;
+        }
+
+        .endpoint-url {
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 1rem;
+            color: #4f46e5;
+            font-weight: 500;
+        }
+
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 20px;
+            border-radius: 8px;
+            font-family: 'Monaco', 'Menlo', monospace;
+            font-size: 0.9rem;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #4f46e5;
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-link:hover {
+            color: #3730a3;
+            transform: translateX(-5px);
+        }
+
+        .feature-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+
+        .feature-item {
+            background: #f0f9ff;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #3b82f6;
+        }
+
+        .feature-item h4 {
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .feature-item p {
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <a href="/" class="back-link">
+                <i class="fas fa-arrow-left"></i>
+                Back to Application
+            </a>
+            <h1><i class="fas fa-code"></i> API Documentation</h1>
+            <p>Integrate AI-powered breast cancer detection into your applications</p>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-info-circle"></i> Overview
+            </div>
+            <div class="card-content">
+                <p>The AI Health Assistant provides a REST API for breast cancer risk assessment using machine learning. The API accepts medical measurements and returns risk predictions with confidence scores.</p>
+
+                <div class="feature-list">
+                    <div class="feature-item">
+                        <h4><i class="fas fa-brain"></i> ML-Powered</h4>
+                        <p>Advanced Random Forest model trained on medical datasets</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-shield-alt"></i> Secure</h4>
+                        <p>RESTful API with proper error handling and validation</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-tachometer-alt"></i> Fast</h4>
+                        <p>Real-time predictions with sub-second response times</p>
+                    </div>
+                    <div class="feature-item">
+                        <h4><i class="fas fa-chart-line"></i> Accurate</h4>
+                        <p>High accuracy model with confidence scoring</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-play-circle"></i> Endpoints
+            </div>
+            <div class="card-content">
+                <div class="endpoint">
+                    <span class="endpoint-method method-post">POST</span>
+                    <span class="endpoint-url">/predict</span>
+                    <p style="margin: 10px 0;">Make a breast cancer risk prediction</p>
+
+                    <h4>Request Body:</h4>
+                    <div class="code-block">
+{
+  "features": [
+    12.32, 12.39, 78.85, 464.1, 0.10280, 0.06981, 0.03987, 0.03700,
+    0.1959, 0.05955, 0.2360, 0.6656, 1.670, 17.43, 0.008045, 0.011800,
+    0.01683, 0.012410, 0.01924, 0.002248, 13.50, 15.64, 86.97, 549.1,
+    0.1385, 0.1266, 0.12420, 0.09391, 0.2827, 0.06771
+  ]
+}
+                    </div>
+
+                    <h4>Response:</h4>
+                    <div class="code-block">
+{
+  "prediction": 0,
+  "probability": 0.123,
+  "status": "success"
+}
+                    </div>
+
+                    <p><strong>Prediction:</strong> 0 = Low Risk (Benign), 1 = High Risk (Malignant)</p>
+                    <p><strong>Probability:</strong> Confidence score between 0.0 and 1.0</p>
+                </div>
+
+                <div class="endpoint">
+                    <span class="endpoint-method method-get">GET</span>
+                    <span class="endpoint-url">/health</span>
+                    <p style="margin: 10px 0;">Check API health status</p>
+
+                    <h4>Response:</h4>
+                    <div class="code-block">
+{
+  "status": "healthy",
+  "model_loaded": true
+}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-list"></i> Feature Order
+            </div>
+            <div class="card-content">
+                <p>The features array must be in the exact order shown below (30 features total):</p>
+                <div class="code-block">
+1. mean radius          11. mean concave points
+2. mean texture         12. radius error
+3. mean perimeter       13. texture error
+4. mean area            14. perimeter error
+5. mean smoothness      15. area error
+6. mean compactness     16. smoothness error
+7. mean concavity       17. compactness error
+8. mean concave points  18. concavity error
+9. mean symmetry        19. concave points error
+10. mean fractal dimension  20. symmetry error
+21. fractal dimension error  22. worst radius
+23. worst texture       24. worst perimeter
+25. worst area          26. worst smoothness
+27. worst compactness   28. worst concavity
+29. worst concave points  30. worst symmetry
+31. worst fractal dimension
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <i class="fas fa-code"></i> Example Usage
+            </div>
+            <div class="card-content">
+                <h4>Python Example:</h4>
+                <div class="code-block">
+import requests
+
+url = "http://localhost:5000/predict"
+data = {
+    "features": [
+        12.32, 12.39, 78.85, 464.1, 0.10280, 0.06981, 0.03987, 0.03700,
+        0.1959, 0.05955, 0.2360, 0.6656, 1.670, 17.43, 0.008045, 0.011800,
+        0.01683, 0.012410, 0.01924, 0.002248, 13.50, 15.64, 86.97, 549.1,
+        0.1385, 0.1266, 0.12420, 0.09391, 0.2827, 0.06771
+    ]
+}
+
+response = requests.post(url, json=data)
+result = response.json()
+
+print(f"Prediction: {result['prediction']}")
+print(f"Probability: {result['probability']:.3f}")
+                </div>
+
+                <h4>JavaScript Example:</h4>
+                <div class="code-block">
+fetch('/predict', {
+  method: 'POST',
+  headers: {
+    'Content-Type': 'application/json',
+  },
+  body: JSON.stringify({
+    features: [
+      12.32, 12.39, 78.85, 464.1, 0.10280, 0.06981, 0.03987, 0.03700,
+      0.1959, 0.05955, 0.2360, 0.6656, 1.670, 17.43, 0.008045, 0.011800,
+      0.01683, 0.012410, 0.01924, 0.002248, 13.50, 15.64, 86.97, 549.1,
+      0.1385, 0.1266, 0.12420, 0.09391, 0.2827, 0.06771
+    ]
+  })
+})
+.then(response => response.json())
+.then(data => {
+  console.log('Prediction:', data.prediction);
+  console.log('Probability:', data.probability);
+});
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
